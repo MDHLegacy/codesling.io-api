@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { after } from 'lodash';
 
 import clientEvents from '../src/clientEvents';
+import serverEvents from '../src/serverEvents'
 
 const text =
 `function hello() {
@@ -28,17 +29,22 @@ describe('Client interactions', () => {
     client1 = ioClient.connect(`${process.env.HOST}:${process.env.PORT}`, query);
     client2 = ioClient.connect(`${process.env.HOST}:${process.env.PORT}`, query);
     client1.on('connect', () => {
+      
       done();
     });
     client2.on('connect', () => {
+      
       done();
     });
   });
 
   afterAll(async (done) => {
+    
     client1.disconnect();
     client2.disconnect();
-    await delay(300);
+    await delay(3000);
+    
+    
     done();
   });
 
@@ -57,7 +63,7 @@ describe('Client interactions', () => {
       }
       done();
     };
-
+    
     client1.on('server.initialState', handler);
     client2.on('server.initialState', handler);
 
