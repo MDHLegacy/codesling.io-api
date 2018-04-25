@@ -1,10 +1,9 @@
-language:  
-  - "node_js"
+language: node_js
 #hello
 node_js: 
   - "9",
 services: 
-  - "postgresql"
+  - postgresql
 
 before_script:
   - psql -c 'create database codesling;' -U postgres
