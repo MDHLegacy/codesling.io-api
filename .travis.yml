@@ -13,3 +13,6 @@ before_script:
   - yarn db:setup:rest-server
   - yarn start &
   - sleep 10 
+
+script: 
+  - yarn test:socket-server
