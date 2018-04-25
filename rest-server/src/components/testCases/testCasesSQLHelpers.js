@@ -7,7 +7,7 @@ export const addTestCaseHelper = `
     id, content, challenge_id
 `;
 
-// throw this shit into the challenge fetfch
+// throw this shit into the challenge fetch
 export const fetchAllTestCasesHelper = ({ challenge_id }) => {
   return `
     SELECT
