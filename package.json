@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start:rest-server": "cd rest-server && yarn start",
     "start:socket-server": "cd socket-server && yarn start",
     "start:services/coderunner-service": "cd services/coderunner-service && yarn start",
     "start": "npm-run-all -p start:rest-server start:socket-server start:services/coderunner-service",
+    "setup": "npm-run-all -s setup:rest-server setup:socket-server setup:services/coderunner-service",
     "setup:rest-server": "cd rest-server && yarn",
     "setup:socket-server": "cd socket-server && yarn",
     "setup:services/coderunner-service": "cd services/coderunner-service && yarn",
