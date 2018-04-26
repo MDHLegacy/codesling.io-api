@@ -220,7 +220,7 @@ export const createTestCaseTable = async () => {
       CREATE TABLE IF NOT EXISTS testCases
       (
         id SERIAL,
-        content VARCHAR(255) NOT NULL,
+        data VARCHAR(255) NOT NULL,
         challenge_id INT NOT NULL,
         CONSTRAINT testCases_pk
           PRIMARY KEY(id),
