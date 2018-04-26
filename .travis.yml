@@ -1,0 +1,18 @@
+language: node_js
+#hell0
+node_js: 
+  - "9"
+services: 
+  - postgresql
+
+before_script:
+  - psql -c 'create database codesling;' -U postgres
+  - yarn buildEnv
+  - yarn setup
+  - createuser root
+  - yarn db:setup:rest-server
+  - yarn start &
+  - sleep 10 
+
+script: 
+  - yarn test:socket-server
