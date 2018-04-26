@@ -1,18 +1,29 @@
 language: node_js
-#hell0
-node_js: 
-  - "9"
-services: 
-  - postgresql
+
+node_js:
+- '9'
+
+services:
+- postgresql
 
 before_script:
-  - psql -c 'create database codesling;' -U postgres
-  - yarn buildEnv
-  - yarn setup
-  - createuser root
-  - yarn db:setup:rest-server
-  - yarn start &
-  - sleep 10 
+- psql -c 'create database codesling;' -U postgres
+- yarn buildEnv
+- yarn setup
+- createuser root
+- yarn db:setup:rest-server
+- yarn start &
+- sleep 10
 
-script: 
-  - yarn test:socket-server
+script:
+- yarn test:socket-server
+
+deploy:
+  provider: s3
+  access_key_id: AKIAJ5Y5QL7EEYXDFTPA
+  secret_access_key:
+    secure: xfxo+vw6JBqHcYl/EHyZNLz6Xx68OlxemZnWQvfopuzslzBndbyMLmvCQlzUykXge0igEc1fu/VRn3wMbWS9IclqzHN582kKAZnJoixageuN6EZ/bULizzR38+bUYzSJdkGzuvIE6FcNBtv2GwKR3e1FPv+P9u/DcZAJvKEfW6lzOdAw6zw6okKqPIU28c5V+zX/NhCtRVLByiyzI1BIWFcQv3VLlcI0tYFt/phX7XgsocZjb1ZlitBHmHh2WzKiVoWNkoAov89vy1+uUuWFmqvovZlHjH4579BA+b1YYz6S8wlfl/AF/Cuy/Si2Z8PR44fQ8cA9U+2PfSljV73ZNfyMB8zL1g9g45z+vI3oun4VqDJ8nsYBzLJ8kgFcIorWPkTM1Xu4C+OXeOfWGPtuo6uC1Iem8VFuajmjUs7xPsybQCpnKH6OY5s5GzII7CmQDIILMVaXNt4eInSnEWDjRKArsyYb2UhI+QeDBI1l4ttvFF9iY74ialgewcQ7byN/wSaNn9yk0yWO5SkCrykybfS+fETIV5lnqN6wSxUL5KIbM3LxhzFGqbjLYtDa7O/Q82HPwG7BuBGRJpVMCVWIxF9LvV98c4wJgIjc0s1+WDI9MJP49/xm/hkZCVFPyhkKCxjhD5/kmZDHT8kujLzvlehn4ol1wqXE0XuA42o+Vo0=
+  bucket: S3 Bucket
+  region: us-west-1c
+  upload-dir: codesling/codesling.io-api
+  acl: public
