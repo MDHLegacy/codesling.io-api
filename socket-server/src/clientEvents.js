@@ -8,6 +8,7 @@ import {
   serverLeave,
   serverRun,
   serverMessage,
+  serverWinnerLoser,
 } from './serverEvents';
 
 /**
@@ -71,6 +72,16 @@ const clientMessage = async ({ io, room }, payload) => {
   }
 };
 
+const clientWinnerLoser = async ({ io, room }, payload) => {
+  success('client winnerLoser heard');
+  const url = process.env.REST_SERVER_URL;
+  try {
+    serverWinnerLoser({ io, room }, 'winnerLoser');
+  } catch (e) {
+    success('error throwing the winnerLoser', e);
+  }
+}
+
 const clientEmitters = {
   'client.ready': clientReady,
   'clientOne.update': clientOneUpdate,
@@ -78,6 +89,7 @@ const clientEmitters = {
   'client.disconnect': clientDisconnect,
   'client.run': clientRun,
   'client.message': clientMessage,
+  'client.winnerLoser': clientWinnerLoser
 };
 
 export default clientEmitters;
